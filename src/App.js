@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { TaskProvider } from "./TaskManagerProivider";
+import Appbar from "./AppBar";
+import TaskList from './components/TaskList';
+
+const TaskBoard = React.lazy(()=> import("./components/TaskBoard"));
+const TaskForm = React.lazy(()=> import("./components/TaskForm"));
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TaskProvider>
+      <Router>
+        <Appbar />
+        <Routes>
+          <Route exact path="/" element={<TaskList />} />
+          <Route
+            exact
+            path="/board"
+            element={
+              <React.Suspense fallback={<div>Loading Task Board...</div>}>
+                <TaskBoard />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/task/:id?"
+            element={
+              <React.Suspense fallback={<div>Loading Task Form...</div>}>
+                <TaskForm />
+              </React.Suspense>
+            }
+          />
+        </Routes>
+      </Router>
+    </TaskProvider>
   );
 }
 
