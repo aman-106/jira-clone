@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import TaskList from "./TaskList"; // Replace with the path to your TaskList.js
-import { TaskContext } from "../TaskManagerProivider"; // Import the actual provider
+import TaskList from "./TaskList";
+import { TaskContext } from "../TaskManagerProivider";
 import { BrowserRouter} from "react-router-dom";
 
 
@@ -64,6 +64,4 @@ describe("TaskList component", () => {
 
     expect(screen.getAllByText(/Mock Task/i)).toHaveLength(tasks.length);
   });
-
-  // Add more tests for functionality like task deletion, editing, etc. (if applicable)
 });

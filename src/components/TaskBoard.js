@@ -38,7 +38,6 @@ const TaskBoard = () => {
       [newStatus]: updatedTasks
     }));
 
-    // Update task status in your backend/state management solution here
     updateTask(taskId, { status: newStatus });
   };
 
@@ -65,7 +64,6 @@ const TaskBoard = () => {
       [source.droppableId]: updatedTasks
     }));
 
-    // Update task status in your backend/state management solution here
     updateTaskStatus(draggableId, destination.droppableId);
   };
 
